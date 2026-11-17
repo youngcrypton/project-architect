@@ -1,14 +1,16 @@
 ---
 name: pa-task-prompt
 description: >-
-  Project Architect: task preparation and context-aware prompt generation. Use
-  when the user asks to prepare an implementation prompt for their coding agent,
-  implement a feature, start a task, break down a feature into an actionable task
-  prompt, or says "prepare a prompt for X", "create task for X", "prompt for
-  [feature]", or "what should I give to my coding agent?". Inspects project
-  memory and actual repository files, checks for stale memory, creates or updates
-  task records in .project-architect/TASKS.md, and generates a comprehensive,
-  copy-ready implementation prompt grounded in reality.
+  Project Architect: task preparation and context-aware prompt generation.
+  Triggered by the slash commands `/pa-task-prompt`, `/pa-prompt`, or `/prompt`,
+  or mentions like `@prompt` or `@pa-task-prompt`. Also use when the user asks to
+  prepare an implementation prompt for their coding agent, implement a feature,
+  start a task, break down a feature into an actionable task prompt, or says
+  "prepare a prompt for X", "create task for X", "prompt for [feature]", or "what
+  should I give to my coding agent?". Inspects project memory and actual repository
+  files, checks for stale memory, creates or updates task records in
+  .project-architect/TASKS.md, and generates a comprehensive, copy-ready
+  implementation prompt grounded in reality.
 ---
 
 # Task Preparation & Prompt Generation Skill (`pa-task-prompt`)

@@ -2,12 +2,14 @@
 name: pa-memory-update
 description: >-
   Project Architect: memory maintenance, verification, and progress tracking.
-  Use when the user reports a task or feature is finished, says "the coding agent
-  completed the task", reports code changes, requests a requirement change, asks
-  to update project memory or verify implemented work, or when project status
-  needs updating. Inspects code to verify claims, enforces IMPLEMENTED vs
-  VERIFIED discipline, logs chronological entries in DEVELOPMENT_LOG.md, updates
-  TASKS.md and CURRENT_ARCHITECTURE.md, and prevents secrets from entering memory.
+  Triggered by the slash commands `/pa-memory-update`, `/pa-sync`, or `/sync`,
+  or mentions like `@sync` or `@pa-memory-update`. Also use when the user reports a
+  task or feature is finished, says "the coding agent completed the task",
+  reports code changes, requests a requirement change, asks to update project
+  memory or verify implemented work, or when project status needs updating.
+  Inspects code to verify claims, enforces IMPLEMENTED vs VERIFIED discipline, logs
+  chronological entries in DEVELOPMENT_LOG.md, updates TASKS.md and
+  CURRENT_ARCHITECTURE.md, and prevents secrets from entering memory.
 ---
 
 # Memory Update & Verification Skill (`pa-memory-update`)

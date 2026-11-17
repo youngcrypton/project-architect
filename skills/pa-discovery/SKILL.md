@@ -1,14 +1,16 @@
 ---
 name: pa-discovery
 description: >-
-  Project Architect: idea-stage onboarding and project discovery. Use when the
-  user wants to start a new project, plan a project from scratch, set up Project
-  Architect for a project, or says "I want to build X" in a workspace with no
-  existing .project-architect/ directory. Guides progressive discovery
-  conversations, captures the project idea, goals, users, constraints, and
-  preferences, then produces a structured project brief, initial roadmap, and
-  populated memory templates. Also use when the user opens an existing project
-  that lacks a .project-architect/ directory and wants to onboard it.
+  Project Architect: idea-stage onboarding and project discovery. Triggered by
+  the slash commands `/pa-discovery`, `/discover`, or `/onboard`, or mentions like
+  `@discovery` or `@pa-discovery`. Also use when the user wants to start a new
+  project, plan a project from scratch, set up Project Architect for a project,
+  or says "I want to build X" in a workspace with no existing .project-architect/
+  directory. Guides progressive discovery conversations, captures the project idea,
+  goals, users, constraints, and preferences, then produces a structured project
+  brief, initial roadmap, and populated memory templates. Also use when the user
+  opens an existing project that lacks a .project-architect/ directory and wants
+  to onboard it.
 ---
 
 # Project Discovery Skill

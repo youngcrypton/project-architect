@@ -59,6 +59,19 @@ Project Architect is **not an autonomous coding agent**. Instead, it is an archi
 
 ---
 
+## Activation Commands & Shortcuts
+
+You can trigger any skill immediately using clean slash commands or `@` mentions:
+
+| Action | Slash Command | Shortcut | `@` Mention |
+|---|---|---|---|
+| **Start Discovery / Onboard** | `/pa-discovery` | `/discover`, `/onboard` | `@discovery` |
+| **Prepare Implementation Prompt** | `/pa-task-prompt` | `/prompt`, `/task` | `@prompt` |
+| **Update Memory & Verify** | `/pa-memory-update` | `/sync`, `/verify` | `@sync` |
+| **Audit Code vs Requirements** | `/pa-project-audit` | `/audit` | `@audit` |
+
+---
+
 ## Documentation Quick Links
 
 - [Installation Guide](./docs/INSTALLATION.md)

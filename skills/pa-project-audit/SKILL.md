@@ -1,13 +1,15 @@
 ---
 name: pa-project-audit
 description: >-
-  Project Architect: read-only project audit and compliance evaluation. Use
-  when the user asks to audit the codebase, verify implementation against
-  requirements, check acceptance criteria, review code quality against project
-  memory, or says "audit this project", "check if we met our requirements",
-  "audit without changing code", or "run an audit". Inspects codebase and tests
-  without modifying code, identifies confirmed defects vs risks vs suggestions,
-  detects architectural drift, and produces a structured audit report.
+  Project Architect: read-only project audit and compliance evaluation.
+  Triggered by the slash commands `/pa-project-audit`, `/pa-audit`, or `/audit`,
+  or mentions like `@audit` or `@pa-project-audit`. Also use when the user asks to
+  audit the codebase, verify implementation against requirements, check
+  acceptance criteria, review code quality against project memory, or says "audit
+  this project", "check if we met our requirements", "audit without changing code",
+  or "run an audit". Inspects codebase and tests without modifying code, identifies
+  confirmed defects vs risks vs suggestions, detects architectural drift, and
+  produces a structured audit report.
 ---
 
 # Project Audit Skill (`pa-project-audit`)

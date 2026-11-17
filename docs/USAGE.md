@@ -4,14 +4,14 @@ This guide describes how to use **Project Architect** across all four project li
 
 ---
 
-## 1. Overview of Skills
+## 1. Overview of Skills & Activation Commands
 
-| Skill | Trigger Phrases | Primary Function | Output |
-|---|---|---|---|
-| `pa-discovery` | *"I want to build...", "Plan this project from scratch", "Onboard this repo"* | Guided question-and-answer discovery for new ideas or existing codebases | Populated `.project-architect/` directory |
-| `pa-task-prompt` | *"Prepare a prompt for...", "Create task for...", "What should I give my coding agent?"* | Inspects codebase + memory to generate an implementation prompt | Copy-ready prompt + entry in `TASKS.md` |
-| `pa-memory-update` | *"The coding agent finished...", "We switched to Google OAuth", "Update memory"* | Records task completions (`IMPLEMENTED` vs `VERIFIED`), pivots, and updates logs | Updated `TASKS.md`, `DEVELOPMENT_LOG.md`, `CURRENT_ARCHITECTURE.md` |
-| `pa-project-audit` | *"Audit this project", "Check if we met our requirements", "Audit without edits"* | Read-only inspection of code vs requirements, flagging defects and drift | Structured audit report |
+| Skill | Slash Commands | `@` Mentions | Natural Triggers | Primary Function |
+|---|---|---|---|---|
+| `pa-discovery` | `/pa-discovery`<br>`/discover`<br>`/onboard` | `@discovery`<br>`@pa-discovery` | *"I want to build...", "Plan this project", "Onboard repo"* | Guided question-and-answer discovery for new ideas or existing codebases |
+| `pa-task-prompt` | `/pa-task-prompt`<br>`/pa-prompt`<br>`/prompt` | `@prompt`<br>`@pa-task-prompt` | *"Prepare prompt for...", "Create task for...", "Next prompt"* | Inspects codebase + memory to generate an implementation prompt |
+| `pa-memory-update` | `/pa-memory-update`<br>`/pa-sync`<br>`/sync` | `@sync`<br>`@pa-memory-update` | *"Coding agent finished...", "We switched to...", "Update memory"* | Records task completions (`IMPLEMENTED` vs `VERIFIED`), pivots, and logs |
+| `pa-project-audit` | `/pa-project-audit`<br>`/pa-audit`<br>`/audit` | `@audit`<br>`@pa-project-audit` | *"Audit this project", "Check requirements", "Audit without edits"* | Read-only inspection of code vs requirements, flagging defects & drift |
 
 ---
 
