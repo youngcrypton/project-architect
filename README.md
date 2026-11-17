@@ -122,13 +122,13 @@ Each capability is encapsulated as an Antigravity skill, triggerable via dedicat
   Agent: [Inspects retry handler files, checks test suite, logs TASK-003, outputs copy-ready prompt]
   ```
 
-### 3. `pa-memory-update` — Verification & Progress Sync (`/sync`)
-- **When to use**: An agent reports work complete, or a requirement/technical decision changes.
-- **How it works**: Transitions reported work to `IMPLEMENTED`. When approved, inspects code and tests, confirms acceptance criteria, moves status to `VERIFIED`, updates `CURRENT_ARCHITECTURE.md`, and writes a dated entry to `DEVELOPMENT_LOG.md`. Replaces outdated decisions with `SUPERSEDED` rather than deleting history.
+### 3. `pa-memory-update` — Autonomous Sync & Verification (`/sync`)
+- **When to use**: Automatically at the end of any coding turn, skill action, or when manually overriding task status.
+- **How it works**: Monitors repository diffs and test results in real time. Enforces **Strict Test Mode**: automatically advances tasks to `VERIFIED` and updates `CURRENT_ARCHITECTURE.md` only when automated tests pass cleanly. Flags tasks without tests as `NEEDS_REVIEW`. Confirms with an unobtrusive 1-line notice in chat.
 - **Example**:
   ```text
-  User: /sync The coding agent finished TASK-003. Verify the retry tests.
-  Agent: [Reads src/retry.ts and tests/retry.test.ts, marks TASK-003 VERIFIED, updates log]
+  Agent: [Finishes feature implementation and runs test suite]
+  Agent: ✓ Memory synchronized: Updated TASKS.md [TASK-003: VERIFIED] & DEVELOPMENT_LOG.md
   ```
 
 ### 4. `pa-project-audit` — Read-Only Project Auditor (`/audit`)

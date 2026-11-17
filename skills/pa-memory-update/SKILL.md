@@ -40,19 +40,36 @@ what is reported as completed and what is independently verified.
 
 ## Common Scenarios & Workflows
 
-### Scenario 0: Proactive Post-Task Completion Prompt (Universal Hook)
+### Scenario 0: Autonomous Real-Time Memory Synchronization Engine (Strict Test Mode)
 
-*Trigger: An agent completes any implementation, bugfix, or coding task in a workspace with `.project-architect/`.*
+*Trigger: Continuous / End of any turn where code changes or any skill completes work in a workspace with `.project-architect/`.*
 
-Whenever a task finishes, the agent must proactively prompt:
-> *"Task complete. Would you like me to record and save this completed task into `.project-architect/` memory (update `TASKS.md`, verify code evidence, and log to `DEVELOPMENT_LOG.md`)?"*
+Whenever any file is modified or any skill (`pa-discovery`, `pa-task-prompt`, `pa-research`, `pa-project-audit`) concludes:
 
-- If user answers **Yes**: Proceed directly through Steps 1.1, 1.2, and 1.3 below.
-- If user answers **No**: Do not modify project memory.
+1. **Detect Workspace Diffs & Test Results**:
+   - Inspect created, modified, or deleted files in the repository.
+   - Inspect terminal execution to verify whether automated tests were run and passed cleanly.
+2. **Strict Test Verification Standard**:
+   - **Case A (Tests Executed & Passed Cleanly)**:
+     - Advance task status in `TASKS.md` to **`VERIFIED`**.
+     - Check off verified criteria `[x]` in `TASKS.md`.
+     - Promote new components into `CURRENT_ARCHITECTURE.md`.
+     - Append a dated entry to `DEVELOPMENT_LOG.md`.
+     - Output 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: VERIFIED] & DEVELOPMENT_LOG.md`.
+   - **Case B (No Tests Executed or Tests Failed)**:
+     - Set/retain task status as **`NEEDS_REVIEW`** (or `IN_PROGRESS`). NEVER mark as `VERIFIED` without test proof.
+     - Record `Evidence: Pending test verification` in `TASKS.md`.
+     - Append a dated entry to `DEVELOPMENT_LOG.md` recording code changes and highlighting pending test debt.
+     - Output 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: NEEDS_REVIEW - Pending Tests] & DEVELOPMENT_LOG.md`.
+3. **Cross-Skill Autonomous Logging**:
+   - `pa-discovery` ➔ Automatically initializes baseline, logs event in `DEVELOPMENT_LOG.md`. Output: `✓ Memory synchronized: Initialized .project-architect/ baseline`.
+   - `pa-task-prompt` ➔ Automatically logs `TASK-XXX` (`READY`) in `TASKS.md` and `DEVELOPMENT_LOG.md`. Output: `✓ Memory synchronized: Logged TASK-XXX [READY] in TASKS.md`.
+   - `pa-research` ➔ Automatically writes `TD-XXX` to `TECHNICAL_DECISIONS.md` and `DEVELOPMENT_LOG.md`. Output: `✓ Memory synchronized: Recorded TD-XXX in TECHNICAL_DECISIONS.md`.
+   - `pa-project-audit` ➔ Automatically flags failing tasks as `NEEDS_REVIEW` in `TASKS.md` and logs audit report. Output: `✓ Memory synchronized: Logged audit report in DEVELOPMENT_LOG.md`.
 
 ---
 
-### Scenario 1: Feature / Task Reported Complete
+### Scenario 1: Manual Verification or Status Override
 
 *Trigger: "The coding agent finished TASK-001", "The booking filter is done", "I finished implementing login."*
 

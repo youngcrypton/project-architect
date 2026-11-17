@@ -3,8 +3,6 @@
 Thumbs.db
 
 # Environment and secrets
-.env
-.env.*
 *.local
 
 # Logs
@@ -13,3 +11,4 @@ npm-debug.log*
 
 # Node / dependencies if any
 node_modules/
+config.bat

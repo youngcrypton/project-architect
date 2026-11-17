@@ -23,19 +23,25 @@ These rules apply whenever Project Architect skills are active.
 - When a developer or coding agent reports that work is finished, record the status as `IMPLEMENTED`, not `VERIFIED`.
 - Only mark something `VERIFIED` after inspecting relevant code, tests, configuration, or running checks that confirm the expected behavior.
 
-## Proactive Task Completion & Memory Synchronization Protocol
+## Autonomous Real-Time Memory Synchronization Protocol (Strict Test Mode)
 
-Whenever any task, code implementation, bugfix, refactor, or deliverable is completed (either directly, via a subagent, or reported by an external coding agent):
+Whenever any task, code implementation, bugfix, refactor, or skill deliverable occurs in a workspace containing a `.project-architect/` directory:
 
-1. **Check for Project Memory**:
-   - Check if a `.project-architect/` directory exists in the workspace.
-2. **Proactive Confirmation Prompt**:
-   - If `.project-architect/` is present, NEVER end the turn without asking the user if they want the task saved.
-   - Prompt the user directly:
-     > *"Task complete. Would you like me to record and save this completed task into `.project-architect/` memory (update `TASKS.md`, verify code evidence, and log to `DEVELOPMENT_LOG.md`)?"*
-3. **Execution on Approval**:
-   - **If Yes**: Automatically invoke `pa-memory-update`. Inspect changed files for code evidence, verify tests, transition task to `IMPLEMENTED` ➔ `VERIFIED` (if criteria are met), update `CURRENT_ARCHITECTURE.md`, and log a dated entry in `DEVELOPMENT_LOG.md`.
-   - **If No**: Respect the user's decision and leave `.project-architect/` untouched.
+1. **Autonomous Real-Time Sync**:
+   - The agent MUST automatically synchronize project memory at the conclusion of the turn without requiring manual sync commands.
+2. **Strict Test Verification Standard**:
+   - **Path A (Tests Executed & Passed)**: If code changes occurred AND automated tests were executed and passed cleanly in that turn:
+     - Advance task status in `TASKS.md` from `READY` ➔ `VERIFIED`.
+     - Check off verified acceptance criteria `[x]` in `TASKS.md`.
+     - Promote verified components into `CURRENT_ARCHITECTURE.md`.
+     - Append a structured entry to `DEVELOPMENT_LOG.md`.
+     - Conclude turn with 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: VERIFIED] & DEVELOPMENT_LOG.md`.
+   - **Path B (No Tests Executed or Tests Failed)**:
+     - Set/retain task status as `NEEDS_REVIEW` (or `IN_PROGRESS`). NEVER mark as `VERIFIED` without test proof.
+     - Append an entry to `DEVELOPMENT_LOG.md` recording code changes and highlighting pending test debt.
+     - Conclude turn with 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: NEEDS_REVIEW - Pending Tests] & DEVELOPMENT_LOG.md`.
+3. **Cross-Skill Autonomous Logging**:
+   - Deliverables from `pa-discovery`, `pa-task-prompt`, `pa-research`, and `pa-project-audit` are automatically committed to their respective memory files and `DEVELOPMENT_LOG.md` with a clean 1-line confirmation.
 
 ## Memory Separation
 

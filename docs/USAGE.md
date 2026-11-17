@@ -63,28 +63,20 @@ You are ready to begin implementation of the first milestone or feature.
 
 ---
 
-## 4. Mode C: Active Development & Verification
+## 4. Mode C: Autonomous Real-Time Memory Synchronization (Strict Test Mode)
 
 ### Scenario
-Your coding agent has completed the task and modified files in the repository.
+You are developing features, running tests, or executing skills in your project.
 
-### Step-by-Step Flow
-1. **Report Completion**:
-   - Tell Project Architect:
-     > *"The coding agent finished TASK-001 and created the calendar components."*
-2. **Status Transition to `IMPLEMENTED`**:
-   - The agent activates `pa-memory-update`.
-   - It immediately updates `TASK-001` to `IMPLEMENTED` (unverified).
-3. **Verification Inspection**:
-   - Tell the agent:
-     > *"Please verify the implementation and tests."*
-   - The agent inspects the created files (`read_file`), checks types, and evaluates test coverage against the acceptance criteria in `TASK-001`.
-4. **Status Transition to `VERIFIED`**:
-   - If criteria pass:
-     - Promotes `TASK-001` to `VERIFIED` with file/test evidence.
-     - Checks off criteria `[x]` in `TASKS.md`.
-     - Promotes the verified component into `CURRENT_ARCHITECTURE.md`.
-     - Appends an entry to `DEVELOPMENT_LOG.md`.
+### Real-Time Workflow
+1. **Autonomous Background Sync**:
+   - Whenever any file is created, modified, or deleted in the workspace, or any skill completes its deliverable, Project Architect inspects changes automatically in the background.
+2. **Strict Test Verification Gate**:
+   - **Tests Run & Passed Cleanly**: The agent marks the task as **`VERIFIED`** in `TASKS.md`, checks off acceptance criteria `[x]`, updates `CURRENT_ARCHITECTURE.md`, and logs the change.
+   - **No Tests or Tests Failed**: The agent marks the task as **`NEEDS_REVIEW`** (or `IN_PROGRESS`) and notes pending test debt in `DEVELOPMENT_LOG.md`. A task is never marked `VERIFIED` without test proof.
+3. **Unobtrusive 1-Line Feedback**:
+   - The agent confirms memory updates with a clean 1-line notice:
+     `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: VERIFIED] & DEVELOPMENT_LOG.md`
 
 ---
 
