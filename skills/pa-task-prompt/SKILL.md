@@ -34,6 +34,9 @@ agents (such as Claude Code, Cursor, Codex, WrongStack, or a subagent).
    - Link tasks back to requirements in `REQUIREMENTS.md` and milestones in `ROADMAP.md`.
 4. **Advisory & Planning Scope**:
    - Do NOT execute code changes to product files yourself unless the user explicitly instructs you to act as the implementer. The default role is planning, prompt generation, and memory maintenance.
+5. **Zero AI Tells & Human Engineering Rigor**:
+   - Every generated prompt must strictly bind the coding agent to produce human-grade, principal-level engineering output.
+   - Forbid AI marketing buzzwords (*delve, tapestry, seamless, leverage, revolutionize*), robotic/redundant code commentary, placeholder stubs (`// TODO: implement later`), and assistant watermarks.
 
 ---
 
@@ -108,6 +111,7 @@ Compare findings from codebase inspection against `.project-architect/`:
      - [ ] [Criterion 1]
      - [ ] [Criterion 2]
      - [ ] [Criterion 3]
+     - [ ] [Free of AI boilerplate, redundant comments, and placeholder stubs]
    - Evidence: Pending implementation
    - Assigned to: Coding Agent
    - Last updated: YYYY-MM-DD
@@ -130,9 +134,14 @@ Assemble the prompt following the strict [Prompt Contract](./references/prompt-c
    - Explicit Out-of-Scope items to prevent agent drift.
 5. **Technical Constraints & Decisions**: Verified libraries, patterns, and contracts.
 6. **Detailed Implementation Requirements**: Step-by-step runtime behavior, edge cases, error handling, security, and accessibility.
-7. **Testing & Verification Instructions**: Exact commands to run and test cases to create.
-8. **Acceptance Criteria Checklist**: Clear checkbox list matching `TASKS.md`.
-9. **Coding Agent Reporting Contract**: Instructions for the coding agent to report touched files, test results, and residual risks.
+7. **Anti-AI Fingerprint & Craftsmanship Contract**:
+   - Explicitly ban AI marketing buzzwords (*delve, tapestry, seamless, leverage, revolutionize, supercharge*).
+   - Ban redundant narrative comments that repeat the syntax.
+   - Ban placeholder stubs (`// TODO: implement later`).
+   - Ban assistant pleasantries, watermarks, and synthetic co-authorship tags.
+8. **Testing & Verification Instructions**: Exact commands to run and test cases to create.
+9. **Acceptance Criteria Checklist**: Clear checkbox list matching `TASKS.md`.
+10. **Coding Agent Reporting Contract**: Instructions for the coding agent to report touched files, test results, and residual risks.
 
 ---
 

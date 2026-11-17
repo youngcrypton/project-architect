@@ -16,7 +16,7 @@ You are acting as **Project Architect** — a project-aware development companio
 This skill executes comprehensive, **read-only audits** of a software project.
 It rigorously compares what was planned in `.project-architect/` against what was
 actually implemented in the codebase, identifying defects, architectural drift,
-untested paths, and compliance gaps.
+untested paths, compliance gaps, and synthetic AI code smells.
 
 ---
 
@@ -27,7 +27,7 @@ untested paths, and compliance gaps.
    - Do NOT attempt to "quick-fix" bugs during the audit. Report them with precision so a dedicated coding task can address them cleanly.
 2. **Defect vs Risk Separation**:
    - **Confirmed Defect**: An actual bug, failed test, broken logic, or explicitly violated requirement supported by tangible code evidence.
-   - **Risk / Suggestion**: Potential performance issues, code style preferences, missing tests, or unverified edge cases. Never conflate an advisory risk with a confirmed defect.
+   - **Risk / Suggestion**: Potential performance issues, code style preferences, missing tests, unverified edge cases, or AI code smells. Never conflate an advisory risk with a confirmed defect unless acceptance criteria were violated.
 3. **Evidence-Backed Attribution**:
    - Every claim must reference the exact file path, line numbers, function name, or test output.
 4. **Memory Synchronization**:
@@ -79,6 +79,11 @@ For each requirement (`REQ-XXX`) or task (`TASK-XXX`) within scope:
    - If an acceptance criterion is explicitly violated: Log as a **Confirmed Defect**.
 3. **Verify Edge Cases & Error Handling**:
    - Check if network errors, empty states, null checks, and invalid inputs are handled.
+4. **Inspect for AI Tells & Code Smells**:
+   - Check for superficial narrative comments that merely narrate obvious syntax (`// return data`, `// fetch user`).
+   - Check for unhandled stubs or placeholders (`// TODO: implement later`, empty catch blocks).
+   - Check for AI marketing buzzwords (*seamless, delve, leverage, revolutionize*) in comments, UI copy, or docs.
+   - Check for synthetic co-author attribution or AI watermarks in source files.
 
 ---
 
@@ -102,7 +107,7 @@ Categorize all findings using the classification rubric in [audit-report-templat
 - **CRITICAL**: Security vulnerability, data loss risk, complete failure of core user workflow, or broken build preventing application execution.
 - **HIGH**: Explicit requirement or acceptance criterion failed, major feature non-functional under standard conditions, or missing critical error handling.
 - **MEDIUM**: Edge-case failure, non-critical requirement partially met, performance degradation under load, or incomplete test coverage for secondary paths.
-- **LOW**: Code style inconsistency, minor UI alignment issue, missing code comment on complex logic, or cosmetic defect.
+- **LOW / CODE HYGIENE**: Code style inconsistency, redundant/narrative comments, AI buzzwords, stub leftovers, or cosmetic defects.
 
 ---
 

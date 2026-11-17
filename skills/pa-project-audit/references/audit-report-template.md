@@ -9,10 +9,12 @@ This reference defines the structured format and severity classification for pro
 1. **Read-Only Guarantee**:
    - An audit strictly inspects code, tests, and memory. It must NEVER modify, create, or delete product code or configuration files during an audit.
 2. **Evidence-Backed Findings**:
-   - Every defect or gap reported must cite concrete evidence: exact file paths, line ranges, symbols, error logs, or missing exports.
+   - Every defect or gap reported must cite concrete evidence: exact file paths, line numbers, symbols, error logs, or missing exports.
    - Theoretical or unconfirmed concerns must be categorized under **Risks & Suggestions**, never as **Confirmed Defects**.
 3. **Traceability to Requirements**:
    - Evaluate code against the explicit criteria defined in `.project-architect/REQUIREMENTS.md` and `.project-architect/TASKS.md`.
+4. **Senior Craftsmanship & Anti-AI Smell Enforcement**:
+   - Explicitly inspect for robotic/narrative comments, placeholder stubs, AI watermarks, and synthetic marketing buzzwords.
 
 ---
 
@@ -77,7 +79,17 @@ When delivering an audit, format the report as follows:
 
 ---
 
-## 6. Risks & Advisory Suggestions
+## 6. Code Craftsmanship & AI Smell Inspection
+*(Detection of robotic AI fingerprints, narrative restatements, stubs, and buzzwords)*
+
+- **Superficial / Redundant Comments**: [e.g. `// return user` in `src/users.ts:52` — remove narrative noise]
+- **Unfinished Stubs / Mocks**: [e.g. `// TODO: implement error handler` in `src/api.ts:88`]
+- **AI Buzzwords in Copy/Docs**: [e.g. Usage of "seamlessly", "cutting-edge" in `docs/` or UI strings]
+- **Synthetic Watermarks**: [e.g. "Co-authored-by: AI" or assistant disclaimers]
+
+---
+
+## 7. Risks & Advisory Suggestions
 *(Non-blocking technical debt, security hygiene, accessibility, or performance risks)*
 
 1. **Security**: [e.g. Missing rate limiting on sensitive endpoint]
@@ -86,11 +98,12 @@ When delivering an audit, format the report as follows:
 
 ---
 
-## 7. Actionable Remediation Plan
+## 8. Actionable Remediation Plan
 Ordered list of recommended tasks to address audit findings:
 - [ ] 1. Fix [DEF-001]: [Action description]
 - [ ] 2. Update `.project-architect/REQUIREMENTS.md` or `TECHNICAL_DECISIONS.md` to reconcile architectural drift.
-- [ ] 3. Generate implementation prompt for missing [REQ-XXX].
+- [ ] 3. Clean up AI code smells and remove redundant comments.
+- [ ] 4. Generate implementation prompt for missing [REQ-XXX].
 ````
 
 ---
@@ -100,4 +113,4 @@ Ordered list of recommended tasks to address audit findings:
 - **CRITICAL**: Security vulnerability, data loss risk, complete failure of core user workflow, or broken build preventing application execution.
 - **HIGH**: Explicit requirement or acceptance criterion failed, major feature non-functional under standard conditions, or missing critical error handling.
 - **MEDIUM**: Edge-case failure, non-critical requirement partially met, performance degradation under load, or incomplete test coverage for secondary paths.
-- **LOW**: Code style inconsistency, minor UI alignment issue, missing code comment on complex logic, or cosmetic defect.
+- **LOW / CODE HYGIENE**: Code style inconsistency, minor UI alignment issue, redundant narrative comments, AI buzzwords, or placeholder stubs.
