@@ -61,20 +61,24 @@ Whenever a task finishes, the agent must proactively prompt:
 - Update its status from `IN_PROGRESS` or `READY` to **`IMPLEMENTED`**.
 - Note the date and state that verification is pending.
 
-#### Step 1.2: Perform or Propose Verification
+#### Step 1.2: Perform Verification & Pre-Commit Confirmation Gate
 - Check if code changes are available for inspection in the workspace:
-  - If code is accessible: Inspect the changed files, check types/imports, and verify tests.
-  - If tests or build commands can be checked: evaluate the test suite.
-- **If Verification Succeeds**:
-  1. Update task status in `TASKS.md` to **`VERIFIED`**.
-  2. Check off the relevant acceptance criteria `[x]` in `TASKS.md`.
+  - If code is accessible: Inspect the changed files, check types/imports, and evaluate test runs.
+- **Pre-Commit Confirmation Gate**:
+  - Present the verification evidence to the developer.
+  - Ask confirmation via `ask_question`:
+    - `(Recommended) Confirm verification and update task to VERIFIED`
+    - `Keep as IMPLEMENTED (unverified for now)`
+    - `Mark as NEEDS_REVIEW (request adjustments)`
+- **Upon Confirmation**:
+  1. Update task status in `TASKS.md` to confirmed state (`VERIFIED` or `IMPLEMENTED`).
+  2. Check off verified acceptance criteria `[x]` in `TASKS.md`.
   3. Under `- Evidence:`, document the specific files, symbols, and tests verified.
   4. If this introduces or completes an architectural component, promote it from `PROPOSED_ARCHITECTURE.md` to `CURRENT_ARCHITECTURE.md` with status `VERIFIED` and evidence.
   5. If the current milestone in `ROADMAP.md` has all tasks verified, update milestone status.
-- **If Verification is Not Performed or Inconclusive**:
-  1. Keep status as **`IMPLEMENTED`** (reported complete, unverified).
-  2. Clearly inform the user:
-     > *"Status updated to IMPLEMENTED. I have not independently verified the code/tests yet. Would you like me to inspect the files and run verification checks now?"*
+- **If Verification is Inconclusive or Rejected**:
+  1. Keep status as **`IMPLEMENTED`** or **`NEEDS_REVIEW`**.
+  2. Document pending checks or discrepancies in the completion response.
 
 #### Step 1.3: Append to `DEVELOPMENT_LOG.md`
 Add a new dated entry at the top of `.project-architect/DEVELOPMENT_LOG.md` documenting the status transition and evidence.

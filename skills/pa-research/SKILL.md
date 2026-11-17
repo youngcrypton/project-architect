@@ -84,6 +84,17 @@ If any site fails to load, returns a 403, or displays an anti-bot challenge:
 
 ---
 
+### Step 3.5: Pre-Synthesis Alignment Gate
+
+Before rendering the final code prototype and recommendation:
+1. **Confirm Architectural Priorities via `ask_question`**:
+   - Priority: `(Recommended) Lowest Dependency Overhead & Zero Bloat`, `Maximum Developer Velocity & Ergonomics`, `Strict Edge Runtime Compatibility`
+2. **Handle Response**:
+   - Tailor the code prototype and comparison table to the developer's confirmed priority.
+   - If user replies *"proceed"* or *"you choose"*, use the recommended default.
+
+---
+
 ### Step 4: Synthesize Findings
 
 Structure your analysis following the [Research Report Template](./references/research-protocol.md):

@@ -54,6 +54,19 @@ untested paths, compliance gaps, and synthetic AI code smells.
 
 ---
 
+### Step 1.5: Pre-Audit Confirmation Gate
+
+Before scanning source files and compiling the audit report:
+1. **Confirm Scope & Rigor**:
+   - Ask the developer using `ask_question`:
+     - Scope: `(Recommended) Full Repository Audit`, `Focused Module Audit (specify in reply)`, `Current Milestone Only`
+     - Rigor: `(Recommended) Functional Requirements + Strict Anti-AI Hygiene Scan`, `Functional Compliance Only`
+2. **Handle Response**:
+   - If user adjusts options, calibrate scope accordingly.
+   - If user replies *"proceed"*, *"run audit"*, or *"skip"*, immediately apply recommended defaults and proceed to Step 2.
+
+---
+
 ### Step 2: Codebase & Test Suite Inspection (Read-Only)
 
 Inspect the repository using read-only operations:

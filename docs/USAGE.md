@@ -48,13 +48,17 @@ You are ready to begin implementation of the first milestone or feature.
 1. **Request an Implementation Prompt**:
    - Tell the agent:
      > *"Prepare a prompt for the coding agent to implement the teacher calendar view."*
-2. **Context-Aware Prompt Generation**:
+2. **Context-Aware Codebase & Memory Inspection**:
    - The agent activates `pa-task-prompt`.
    - It inspects the workspace (detecting greenfield or existing code).
    - It checks `PROJECT_BRIEF.md`, `REQUIREMENTS.md`, and `TECHNICAL_DECISIONS.md`.
+3. **Pre-Execution Confirmation & Alignment Gate**:
+   - Before outputting the final prompt, the agent pauses and asks 1–2 focused confirmation questions via multiple-choice buttons (e.g., confirming files in scope, preferred testing library).
+   - You tap your preferred option (or say *"proceed"*).
+4. **Prompt Assembly & Task Tracking**:
    - It creates `TASK-001` in `.project-architect/TASKS.md` with status `READY`.
    - It outputs a comprehensive, copy-ready prompt containing in-scope/out-of-scope boundaries, acceptance criteria, error handling, and coding agent reporting instructions.
-3. **Execute with Your Coding Agent**:
+5. **Execute with Your Coding Agent**:
    - Copy the generated prompt block directly into your primary coding agent (Claude Code, Cursor, Codex, etc.).
 
 ---

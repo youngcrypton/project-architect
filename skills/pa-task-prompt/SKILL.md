@@ -122,6 +122,21 @@ Compare findings from codebase inspection against `.project-architect/`:
 
 ---
 
+### Step 4.5: Pre-Prompt Confirmation & Scope Alignment Gate
+
+Before assembling and rendering the final implementation prompt:
+1. **Formulate 1–2 Focused Confirmation Questions**:
+   - Scope Boundaries: Confirm exact files or modules to include or exclude.
+   - Verification Strategy: Confirm preferred testing approach (e.g., Unit tests vs E2E vs manual verification).
+   - Technical Choices: Confirm any ambiguous library choices or trade-offs discovered during inspection.
+2. **Use `ask_question` for Multiple-Choice**:
+   - Present discrete choices with a recommended default so the developer can tap to confirm without typing paragraphs.
+3. **Handle Response**:
+   - If the developer provides answers/adjustments: incorporate them directly into In-Scope, Out-of-Scope, and Acceptance Criteria.
+   - If the developer replies *"proceed"*, *"looks good"*, or *"skip"*: immediately accept high-confidence defaults and proceed to Step 5.
+
+---
+
 ### Step 5: Construct the Implementation Prompt
 
 Assemble the prompt following the strict [Prompt Contract](./references/prompt-contract.md). Ensure all 10 core sections are complete:

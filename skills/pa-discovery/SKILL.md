@@ -209,9 +209,9 @@ For every important fact or decision, use this format:
 
 ---
 
-## Step 4: Present the Brief for Review
+## Step 4: Present the Brief for Review (Pre-Commit Alignment Gate)
 
-After populating memory, present a concise summary to the user:
+After gathering discovery answers and before committing files, present a concise summary to the user:
 
 1. **Project brief summary** — the key points in 10–15 lines.
 2. **Confirmed facts** — what the user explicitly stated.
@@ -219,10 +219,12 @@ After populating memory, present a concise summary to the user:
 4. **Open questions** — what still needs answers.
 5. **Initial roadmap** — proposed milestones if enough is known.
 
-Ask: *"Does this capture your project correctly? Anything to add or change?"*
+Confirm with the developer using `ask_question`:
+- `(Recommended) Looks accurate — initialize and save project memory`
+- `Adjust a requirement or workflow first`
+- `Add another constraint or preference`
 
-Incorporate feedback and update the memory files. Do NOT re-create files from
-scratch — use `edit_file` to update specific sections.
+Incorporate feedback and update memory files. If the user replies *"looks good"* or *"proceed"*, immediately write the files.
 
 ---
 

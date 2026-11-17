@@ -45,6 +45,10 @@ When context is lost, agents hallucinate non-existent imports, invent fictitious
 > 
 > A task is promoted to **`VERIFIED`** only after inspecting the modified source files, reviewing automated test results, and validating each acceptance criterion against tangible evidence.
 
+> [!TIP]
+> ### Pre-Execution Confirmation & Alignment Gates
+> Project Architect never makes assumptions on ambiguous technical trade-offs or unverified scope. Before generating an implementation prompt, modifying project memory, running an audit, or finalizing a technical decision, it pauses and presents 1–2 focused confirmation questions via interactive buttons, ensuring you always retain architectural control.
+
 ---
 
 ## System Architecture & Lifecycle
