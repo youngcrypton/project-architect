@@ -1,0 +1,8 @@
+{
+  "name": "Project Architect",
+  "author": {
+    "name": "youngcrypton"
+  },
+  "repository": "https://github.com/youngcrypton/project-architect",
+  "description": "A living project companion that guides software projects from idea through planning, implementation, verification, and maintenance. Maintains persistent project memory, generates context-aware coding prompts, and tracks what is planned vs. implemented vs. verified."
+}
