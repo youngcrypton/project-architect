@@ -84,14 +84,19 @@ If any site fails to load, returns a 403, or displays an anti-bot challenge:
 
 ---
 
-### Step 3.5: Pre-Synthesis Alignment Gate
+### Step 3.5: Pre-Synthesis Alignment Gate (HARD LOCK)
 
-Before rendering the final code prototype and recommendation:
-1. **Confirm Architectural Priorities via `ask_question`**:
+> [!CAUTION]
+> **CRITICAL STOP CONDITION — TURN 1 TERMINATION**
+> You are **STRICTLY FORBIDDEN** from outputting the technical recommendation, trade-off matrix, or code prototype in Turn 1.
+> You MUST invoke `ask_question` to align on architectural priorities and **END YOUR TURN IMMEDIATELY**.
+> Delivering recommendations before receiving developer priority confirmation is a fatal compliance failure.
+
+1. **Call `ask_question` and HALT**:
    - Priority: `(Recommended) Lowest Dependency Overhead & Zero Bloat`, `Maximum Developer Velocity & Ergonomics`, `Strict Edge Runtime Compatibility`
-2. **Handle Response**:
-   - Tailor the code prototype and comparison table to the developer's confirmed priority.
-   - If user replies *"proceed"* or *"you choose"*, use the recommended default.
+   - Terminate your turn immediately after calling `ask_question`.
+2. **Turn 2 (Unlocked Upon Response)**:
+   - When the user answers or says *"proceed"*, incorporate confirmed priorities and proceed to Step 4.
 
 ---
 

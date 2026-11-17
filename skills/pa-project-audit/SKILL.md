@@ -54,16 +54,20 @@ untested paths, compliance gaps, and synthetic AI code smells.
 
 ---
 
-### Step 1.5: Pre-Audit Confirmation Gate
+### Step 1.5: Pre-Audit Confirmation Gate (HARD LOCK)
 
-Before scanning source files and compiling the audit report:
-1. **Confirm Scope & Rigor**:
-   - Ask the developer using `ask_question`:
-     - Scope: `(Recommended) Full Repository Audit`, `Focused Module Audit (specify in reply)`, `Current Milestone Only`
-     - Rigor: `(Recommended) Functional Requirements + Strict Anti-AI Hygiene Scan`, `Functional Compliance Only`
-2. **Handle Response**:
-   - If user adjusts options, calibrate scope accordingly.
-   - If user replies *"proceed"*, *"run audit"*, or *"skip"*, immediately apply recommended defaults and proceed to Step 2.
+> [!CAUTION]
+> **CRITICAL STOP CONDITION — TURN 1 TERMINATION**
+> You are **STRICTLY FORBIDDEN** from running the audit inspection or outputting findings in Turn 1.
+> You MUST invoke `ask_question` with audit scope/rigor options and **END YOUR TURN IMMEDIATELY**.
+> Executing the audit before receiving developer scope confirmation is a fatal compliance failure.
+
+1. **Call `ask_question` and HALT**:
+   - Scope: `(Recommended) Full Repository Audit`, `Focused Module Audit (specify in reply)`, `Current Milestone Only`
+   - Rigor: `(Recommended) Functional Requirements + Strict Anti-AI Hygiene Scan`, `Functional Compliance Only`
+   - Terminate your turn immediately after calling `ask_question`.
+2. **Turn 2 (Unlocked Upon Response)**:
+   - When the user answers or says *"proceed"* or *"run audit"*, calibrate scope and proceed to Step 2.
 
 ---
 

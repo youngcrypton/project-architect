@@ -47,12 +47,21 @@ Whenever any task, code implementation, bugfix, refactor, or deliverable is comp
 - Before generating an implementation prompt that references specific files, functions, or conventions, inspect the actual repository first.
 - If no codebase exists, the prompt must clearly state that and must not reference imaginary files or architecture.
 
-## Pre-Execution Confirmation & Alignment Gate Protocol
+## Pre-Execution Confirmation & Alignment Gate Protocol (HARD LOCK)
 
-Across all skills (`pa-discovery`, `pa-task-prompt`, `pa-memory-update`, `pa-project-audit`, `pa-research`), after accessing project memory and inspecting the codebase, but **before delivering the final prompt, executing an audit, modifying memory files, or finalizing technical decisions**:
+> [!CAUTION]
+> **CRITICAL STOP CONDITION — TWO-PHASE ENFORCEMENT**
+> Across ALL skills (`pa-discovery`, `pa-task-prompt`, `pa-memory-update`, `pa-project-audit`, `pa-research`), whenever you are asked to prepare a prompt, update memory, execute an audit, or conduct research:
+>
+> 1. **STRICT PROHIBITION IN TURN 1**:
+>    You are **STRICTLY FORBIDDEN** from outputting the implementation prompt, modifying memory files, executing the audit scan, or delivering final technical recommendations in the initial turn.
+> 2. **MANDATORY STOP & QUESTION**:
+>    Your turn **MUST TERMINATE IMMEDIATELY** after calling the `ask_question` tool with 1–2 focused confirmation choices. Outputting the deliverable in the same turn before the user answers is a fatal compliance failure.
+> 3. **PHASE 2 UNLOCK CONDITION**:
+>    You may ONLY generate and render the final deliverable in Turn 2, AFTER the developer selects their answers or explicitly commands *"proceed"*, *"skip"*, or *"looks good"*.
 
 1. **Mandatory Alignment Check**:
-   - The agent MUST pause and present 1–3 focused, high-impact confirmation questions.
+   - The agent MUST pause and present 1–3 focused, high-impact confirmation questions via `ask_question`.
    - Purpose: Align on scope boundaries, preferred technical trade-offs, testing approach, or audit depth before committing to the final deliverable.
 2. **Interactive Selection via `ask_question`**:
    - Whenever a confirmation involves discrete choices (e.g., choice of test framework, specific file scope, or audit strictness), the agent MUST use the `ask_question` tool so the developer can tap options instead of typing paragraphs.

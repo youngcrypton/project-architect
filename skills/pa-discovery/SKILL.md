@@ -209,9 +209,15 @@ For every important fact or decision, use this format:
 
 ---
 
-## Step 4: Present the Brief for Review (Pre-Commit Alignment Gate)
+## Step 4: Present the Brief for Review (Pre-Commit Alignment Gate - HARD LOCK)
 
-After gathering discovery answers and before committing files, present a concise summary to the user:
+> [!CAUTION]
+> **CRITICAL STOP CONDITION — PRE-COMMIT TERMINATION**
+> You are **STRICTLY FORBIDDEN** from creating or writing `.project-architect/` files to disk before the developer reviews and confirms this brief summary.
+> You MUST invoke `ask_question` with confirmation choices and **END YOUR TURN IMMEDIATELY**.
+> Writing memory files before receiving user confirmation is a fatal compliance failure.
+
+After gathering discovery answers, present a concise summary to the user:
 
 1. **Project brief summary** — the key points in 10–15 lines.
 2. **Confirmed facts** — what the user explicitly stated.
@@ -219,12 +225,13 @@ After gathering discovery answers and before committing files, present a concise
 4. **Open questions** — what still needs answers.
 5. **Initial roadmap** — proposed milestones if enough is known.
 
-Confirm with the developer using `ask_question`:
+Call `ask_question` and HALT:
 - `(Recommended) Looks accurate — initialize and save project memory`
 - `Adjust a requirement or workflow first`
 - `Add another constraint or preference`
 
-Incorporate feedback and update memory files. If the user replies *"looks good"* or *"proceed"*, immediately write the files.
+**Turn 2 (Unlocked Upon Confirmation)**:
+Incorporate feedback and write memory files. If the user replies *"looks good"* or *"proceed"*, immediately write the files.
 
 ---
 

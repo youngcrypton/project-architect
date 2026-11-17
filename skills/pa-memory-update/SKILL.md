@@ -64,13 +64,19 @@ Whenever a task finishes, the agent must proactively prompt:
 #### Step 1.2: Perform Verification & Pre-Commit Confirmation Gate
 - Check if code changes are available for inspection in the workspace:
   - If code is accessible: Inspect the changed files, check types/imports, and evaluate test runs.
-- **Pre-Commit Confirmation Gate**:
+- **Pre-Commit Confirmation Gate (HARD LOCK)**:
+  > [!CAUTION]
+  > **CRITICAL STOP CONDITION — TURN 1 TERMINATION**
+  > You are **STRICTLY FORBIDDEN** from modifying memory files or updating `TASKS.md` status in Turn 1.
+  > You MUST invoke `ask_question` and **END YOUR TURN IMMEDIATELY**.
+  > Writing to memory before the developer confirms is a fatal compliance failure.
+
   - Present the verification evidence to the developer.
-  - Ask confirmation via `ask_question`:
+  - Call `ask_question` and HALT:
     - `(Recommended) Confirm verification and update task to VERIFIED`
     - `Keep as IMPLEMENTED (unverified for now)`
     - `Mark as NEEDS_REVIEW (request adjustments)`
-- **Upon Confirmation**:
+- **Turn 2 (Unlocked Upon Confirmation)**:
   1. Update task status in `TASKS.md` to confirmed state (`VERIFIED` or `IMPLEMENTED`).
   2. Check off verified acceptance criteria `[x]` in `TASKS.md`.
   3. Under `- Evidence:`, document the specific files, symbols, and tests verified.

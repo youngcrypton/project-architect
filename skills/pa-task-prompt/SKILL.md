@@ -122,18 +122,23 @@ Compare findings from codebase inspection against `.project-architect/`:
 
 ---
 
-### Step 4.5: Pre-Prompt Confirmation & Scope Alignment Gate
+### Step 4.5: Pre-Prompt Confirmation & Scope Alignment Gate (HARD LOCK)
 
-Before assembling and rendering the final implementation prompt:
+> [!CAUTION]
+> **CRITICAL STOP CONDITION — TURN 1 TERMINATION**
+> You are **STRICTLY PROHIBITED** from generating or outputting the implementation prompt in Turn 1.
+> You MUST invoke `ask_question` with 1–2 focused confirmation choices and **END YOUR TURN IMMEDIATELY**.
+> Generating the prompt before the developer provides answers is a fatal compliance failure.
+
 1. **Formulate 1–2 Focused Confirmation Questions**:
    - Scope Boundaries: Confirm exact files or modules to include or exclude.
    - Verification Strategy: Confirm preferred testing approach (e.g., Unit tests vs E2E vs manual verification).
    - Technical Choices: Confirm any ambiguous library choices or trade-offs discovered during inspection.
-2. **Use `ask_question` for Multiple-Choice**:
+2. **Call `ask_question` and HALT**:
    - Present discrete choices with a recommended default so the developer can tap to confirm without typing paragraphs.
-3. **Handle Response**:
-   - If the developer provides answers/adjustments: incorporate them directly into In-Scope, Out-of-Scope, and Acceptance Criteria.
-   - If the developer replies *"proceed"*, *"looks good"*, or *"skip"*: immediately accept high-confidence defaults and proceed to Step 5.
+   - Terminate your turn immediately after calling `ask_question`. Do not emit prompt markdown.
+3. **Turn 2 (Unlocked)**:
+   - When the developer provides answers or replies *"proceed"*, *"looks good"*, or *"skip"*: incorporate answers and proceed to Step 5.
 
 ---
 
