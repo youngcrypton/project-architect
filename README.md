@@ -76,6 +76,12 @@ flowchart TD
         H -.->|"Strict Read-Only Inspection"| J
         J --> K["Executive Audit Report & Drift Analysis"]
     end
+
+    subgraph ModeE ["5. Deep Research & Investigation (Mode E)"]
+        L["Unfamiliar Concept / Choice"] --> M["pa-research<br/><code>/research</code>"]
+        M --> N["Web Search & Live Browser"]
+        N -->|"Validated Decisions (TD-XXX)"| C
+    end
 ```
 
 ---
@@ -90,6 +96,7 @@ Each capability is encapsulated as an Antigravity skill, triggerable via dedicat
 | **`pa-task-prompt`** | `/pa-task-prompt` | `/prompt`, `/task` | `@prompt` | Reality-grounded implementation prompt generator |
 | **`pa-memory-update`** | `/pa-memory-update` | `/sync`, `/verify` | `@sync` | Lifecycle tracking, verification, and log updates |
 | **`pa-project-audit`** | `/pa-project-audit` | `/audit` | `@audit` | Read-only compliance check and drift detection |
+| **`pa-research`** | `/pa-research` | `/research`, `/investigate` | `@research` | Deep technical research via web search & live Chrome browser |
 
 ---
 
@@ -127,6 +134,15 @@ Each capability is encapsulated as an Antigravity skill, triggerable via dedicat
   ```text
   User: /audit Check Milestone 1 against our requirements. Do not change code.
   Agent: [Generates structured report with file:line evidence, defect breakdown, and pass/fail verdict]
+  ```
+
+### 5. `pa-research` — Deep Technical Research & Browser Investigation (`/research`)
+- **When to use**: Evaluating competing libraries, investigating obscure APIs, or needing real-time visual inspection of web components or documentation.
+- **How it works**: Intelligently routes between fast web search (`search_web`) and live Chrome DevTools browser navigation (`browser` subagent). Explicitly reports inaccessible origins, paywalls, or bot-gated sites without guessing. Synthesizes trade-off matrices and complete code prototypes, and offers to log findings into `TECHNICAL_DECISIONS.md`.
+- **Example**:
+  ```text
+  User: /research Compare TanStack Query vs SWR for Next.js App Router with optimistic updates.
+  Agent: [Researches docs, tests rendering, provides trade-off matrix, and formats TD-004 entry]
   ```
 
 ---

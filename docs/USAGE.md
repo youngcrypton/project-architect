@@ -12,6 +12,7 @@ This guide describes how to use **Project Architect** across all four project li
 | `pa-task-prompt` | `/pa-task-prompt`<br>`/pa-prompt`<br>`/prompt` | `@prompt`<br>`@pa-task-prompt` | *"Prepare prompt for...", "Create task for...", "Next prompt"* | Inspects codebase + memory to generate an implementation prompt |
 | `pa-memory-update` | `/pa-memory-update`<br>`/pa-sync`<br>`/sync` | `@sync`<br>`@pa-memory-update` | *"Coding agent finished...", "We switched to...", "Update memory"* | Records task completions (`IMPLEMENTED` vs `VERIFIED`), pivots, and logs |
 | `pa-project-audit` | `/pa-project-audit`<br>`/pa-audit`<br>`/audit` | `@audit`<br>`@pa-project-audit` | *"Audit this project", "Check requirements", "Audit without edits"* | Read-only inspection of code vs requirements, flagging defects & drift |
+| `pa-research` | `/pa-research`<br>`/research`<br>`/investigate` | `@research`<br>`@pa-research` | *"Research X", "I don't understand X", "Compare X vs Y"* | Deep technical investigation via web search & live Chrome browser |
 
 ---
 
@@ -102,3 +103,25 @@ Your coding agent has completed the task and modified files in the repository.
   - Categorizes findings into **Confirmed Defects**, **Architectural Drift**, and **Risks & Suggestions**.
   - Outputs a structured audit report with reproducible file and line evidence.
   - Recommends an ordered remediation plan without editing code.
+
+---
+
+## 6. Mode E: Deep Technical Research & Browser Investigation
+
+### Scenario
+You are evaluating two libraries, hit an unfamiliar architectural pattern, or need real-time browser inspection of visual components or documentation.
+
+### Step-by-Step Flow
+1. **Trigger Research**:
+   - Tell the agent:
+     > *"/research Compare TanStack Query vs SWR for Next.js App Router with optimistic updates."*
+2. **Autonomous Tool Routing**:
+   - The agent activates `pa-research`.
+   - Uses `search_web` for changelogs and RFCs.
+   - Launches Chrome DevTools `browser` subagent for interactive visual inspection, client-rendered docs, or bundle size analyzers.
+3. **Transparent Origin Reporting**:
+   - If any documentation site requires authentication or throws a 403 / bot challenge, the agent explicitly reports the block and pivots to alternative public mirrors.
+4. **Structured Decision & Prototype**:
+   - Receives an executive summary, trade-off matrix (footprint, SSR support, maintenance), and a complete, typed code prototype.
+5. **Memory Synchronization**:
+   - The agent offers to append the decision to `.project-architect/TECHNICAL_DECISIONS.md` (`TD-XXX`) and update `DEVELOPMENT_LOG.md`.
