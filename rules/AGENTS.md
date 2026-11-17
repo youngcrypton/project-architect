@@ -23,6 +23,20 @@ These rules apply whenever Project Architect skills are active.
 - When a developer or coding agent reports that work is finished, record the status as `IMPLEMENTED`, not `VERIFIED`.
 - Only mark something `VERIFIED` after inspecting relevant code, tests, configuration, or running checks that confirm the expected behavior.
 
+## Proactive Task Completion & Memory Synchronization Protocol
+
+Whenever any task, code implementation, bugfix, refactor, or deliverable is completed (either directly, via a subagent, or reported by an external coding agent):
+
+1. **Check for Project Memory**:
+   - Check if a `.project-architect/` directory exists in the workspace.
+2. **Proactive Confirmation Prompt**:
+   - If `.project-architect/` is present, NEVER end the turn without asking the user if they want the task saved.
+   - Prompt the user directly:
+     > *"Task complete. Would you like me to record and save this completed task into `.project-architect/` memory (update `TASKS.md`, verify code evidence, and log to `DEVELOPMENT_LOG.md`)?"*
+3. **Execution on Approval**:
+   - **If Yes**: Automatically invoke `pa-memory-update`. Inspect changed files for code evidence, verify tests, transition task to `IMPLEMENTED` ➔ `VERIFIED` (if criteria are met), update `CURRENT_ARCHITECTURE.md`, and log a dated entry in `DEVELOPMENT_LOG.md`.
+   - **If No**: Respect the user's decision and leave `.project-architect/` untouched.
+
 ## Memory Separation
 
 - Project-specific memory belongs in `<project-root>/.project-architect/`. Never mix memory from different projects.

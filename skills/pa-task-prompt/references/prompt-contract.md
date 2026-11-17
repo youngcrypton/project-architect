@@ -114,4 +114,5 @@ Before presenting the prompt to the user, ensure:
 3. Are non-goals clearly stated to prevent rabbit-holes?
 4. Are security, error handling, and edge cases addressed?
 5. Is the prompt copy-ready without requiring additional explanation?
+
 6. Does it enforce the Anti-AI Fingerprint & Craftsmanship Contract?

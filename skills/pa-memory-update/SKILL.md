@@ -38,6 +38,18 @@ what is reported as completed and what is independently verified.
 
 ## Common Scenarios & Workflows
 
+### Scenario 0: Proactive Post-Task Completion Prompt (Universal Hook)
+
+*Trigger: An agent completes any implementation, bugfix, or coding task in a workspace with `.project-architect/`.*
+
+Whenever a task finishes, the agent must proactively prompt:
+> *"Task complete. Would you like me to record and save this completed task into `.project-architect/` memory (update `TASKS.md`, verify code evidence, and log to `DEVELOPMENT_LOG.md`)?"*
+
+- If user answers **Yes**: Proceed directly through Steps 1.1, 1.2, and 1.3 below.
+- If user answers **No**: Do not modify project memory.
+
+---
+
 ### Scenario 1: Feature / Task Reported Complete
 
 *Trigger: "The coding agent finished TASK-001", "The booking filter is done", "I finished implementing login."*
