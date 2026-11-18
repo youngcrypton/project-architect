@@ -2,14 +2,8 @@
 name: pa-memory-update
 description: >-
   Project Architect: memory maintenance, verification, and progress tracking.
-  Triggered by the slash commands `/pa-memory-update`, `/pa-sync`, or `/sync`,
-  or mentions like `@sync` or `@pa-memory-update`. Also use when the user reports a
-  task or feature is finished, says "the coding agent completed the task",
-  reports code changes, requests a requirement change, asks to update project
-  memory or verify implemented work, or when project status needs updating.
-  Inspects code to verify claims, enforces IMPLEMENTED vs VERIFIED discipline, logs
-  chronological entries in DEVELOPMENT_LOG.md, updates TASKS.md and
-  CURRENT_ARCHITECTURE.md, and prevents secrets from entering memory.
+  Triggered by slash commands `/pa-memory-update`, `/pa-sync`, or `/sync`, or mentions like `@sync`.
+  MUST be activated after ANY code changes, feature implementations, bugfixes, or test runs in a workspace containing `.project-architect/` to prompt the developer via `ask_question` whether to update project memory, advance task statuses, and append to DEVELOPMENT_LOG.md.
 ---
 
 # Memory Update & Verification Skill (`pa-memory-update`)
@@ -40,32 +34,34 @@ what is reported as completed and what is independently verified.
 
 ## Common Scenarios & Workflows
 
-### Scenario 0: Autonomous Real-Time Memory Synchronization Engine (Strict Test Mode)
+### Scenario 0: Mandatory Post-Task Memory Confirmation Gate (Strict Test Mode)
 
-*Trigger: Continuous / End of any turn where code changes or any skill completes work in a workspace with `.project-architect/`.*
+*Trigger: Continuous / End of any turn where code changes or any task concludes in a workspace with `.project-architect/`.*
 
-Whenever any file is modified or any skill (`pa-discovery`, `pa-task-prompt`, `pa-research`, `pa-project-audit`) concludes:
+Whenever any file is modified or an implementation/bugfix task concludes:
 
-1. **Detect Workspace Diffs & Test Results**:
+1. **Mandatory Post-Task Gate (`ask_question`)**:
+   - The agent is **STRICTLY PROHIBITED** from completing the turn without presenting the confirmation gate via `ask_question`:
+     - Question: *"Work on this task is complete. Would you like Project Architect to synchronize your project memory (`TASKS.md` & `DEVELOPMENT_LOG.md`)?"*
+     - Options:
+       - `(Recommended) Yes: Synchronize memory now (Strict verification standard)`
+       - `No: Skip memory synchronization for this turn`
+2. **Phase 2 Execution (Upon Developer Confirmation)**:
    - Inspect created, modified, or deleted files in the repository.
    - Inspect terminal execution to verify whether automated tests were run and passed cleanly.
-2. **Strict Test Verification Standard**:
    - **Case A (Tests Executed & Passed Cleanly)**:
      - Advance task status in `TASKS.md` to **`VERIFIED`**.
      - Check off verified criteria `[x]` in `TASKS.md`.
      - Promote new components into `CURRENT_ARCHITECTURE.md`.
      - Append a dated entry to `DEVELOPMENT_LOG.md`.
-     - Output 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: VERIFIED] & DEVELOPMENT_LOG.md`.
+     - Conclude with 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: VERIFIED] & DEVELOPMENT_LOG.md`.
    - **Case B (No Tests Executed or Tests Failed)**:
      - Set/retain task status as **`NEEDS_REVIEW`** (or `IN_PROGRESS`). NEVER mark as `VERIFIED` without test proof.
      - Record `Evidence: Pending test verification` in `TASKS.md`.
      - Append a dated entry to `DEVELOPMENT_LOG.md` recording code changes and highlighting pending test debt.
-     - Output 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: NEEDS_REVIEW - Pending Tests] & DEVELOPMENT_LOG.md`.
+     - Conclude with 1-line feedback: `✓ Memory synchronized: Updated TASKS.md [TASK-XXX: NEEDS_REVIEW - Pending Tests] & DEVELOPMENT_LOG.md`.
 3. **Cross-Skill Autonomous Logging**:
-   - `pa-discovery` ➔ Automatically initializes baseline, logs event in `DEVELOPMENT_LOG.md`. Output: `✓ Memory synchronized: Initialized .project-architect/ baseline`.
-   - `pa-task-prompt` ➔ Automatically logs `TASK-XXX` (`READY`) in `TASKS.md` and `DEVELOPMENT_LOG.md`. Output: `✓ Memory synchronized: Logged TASK-XXX [READY] in TASKS.md`.
-   - `pa-research` ➔ Automatically writes `TD-XXX` to `TECHNICAL_DECISIONS.md` and `DEVELOPMENT_LOG.md`. Output: `✓ Memory synchronized: Recorded TD-XXX in TECHNICAL_DECISIONS.md`.
-   - `pa-project-audit` ➔ Automatically flags failing tasks as `NEEDS_REVIEW` in `TASKS.md` and logs audit report. Output: `✓ Memory synchronized: Logged audit report in DEVELOPMENT_LOG.md`.
+   - Deliverables from `pa-discovery`, `pa-task-prompt`, `pa-research`, and `pa-project-audit` are automatically committed to their respective memory files and `DEVELOPMENT_LOG.md` with a clean 1-line confirmation.
 
 ---
 

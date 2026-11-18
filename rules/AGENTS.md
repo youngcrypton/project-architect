@@ -23,14 +23,19 @@ These rules apply whenever Project Architect skills are active.
 - When a developer or coding agent reports that work is finished, record the status as `IMPLEMENTED`, not `VERIFIED`.
 - Only mark something `VERIFIED` after inspecting relevant code, tests, configuration, or running checks that confirm the expected behavior.
 
-## Autonomous Real-Time Memory Synchronization Protocol (Strict Test Mode)
+## Mandatory Post-Task Memory Confirmation Gate (Strict Test Mode)
 
-Whenever any task, code implementation, bugfix, refactor, or skill deliverable occurs in a workspace containing a `.project-architect/` directory:
+Whenever any task, code implementation, bugfix, refactor, or tool execution modifies files in a workspace containing a `.project-architect/` directory:
 
-1. **Autonomous Real-Time Sync**:
-   - The agent MUST automatically synchronize project memory at the conclusion of the turn without requiring manual sync commands.
-2. **Strict Test Verification Standard**:
-   - **Path A (Tests Executed & Passed)**: If code changes occurred AND automated tests were executed and passed cleanly in that turn:
+1. **Mandatory Post-Task Confirmation Gate**:
+   - The agent is **STRICTLY FORBIDDEN** from concluding the turn or delivering a final completion response without first calling the `ask_question` tool.
+   - The agent MUST call `ask_question` asking the developer:
+     *"Work on this task is complete. Would you like Project Architect to synchronize your project memory (`TASKS.md` & `DEVELOPMENT_LOG.md`)?"*
+     Options:
+     - "(Recommended) Yes: Synchronize memory now (Strict verification standard)"
+     - "No: Skip memory synchronization for this turn"
+2. **Phase 2 Execution Standard (Upon Developer Confirmation / 'Yes' / 'Proceed')**:
+   - **Path A (Tests Executed & Passed)**: If code changes occurred AND automated tests were executed and passed cleanly:
      - Advance task status in `TASKS.md` from `READY` ➔ `VERIFIED`.
      - Check off verified acceptance criteria `[x]` in `TASKS.md`.
      - Promote verified components into `CURRENT_ARCHITECTURE.md`.
